@@ -10,4 +10,8 @@
     <name>marvel</name>
     <description>the project for Spring Boot</description>
 
+    <modules>
+        <module>captain-america</module>
+    </modules>
+
 </project>

@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class CaptainAmericaApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
-
+    @Test
+    public void exampleTest() {
+        System.out.println("Hello Spring Test");
+    }
 }
