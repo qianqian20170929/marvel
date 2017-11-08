@@ -1,11 +1,8 @@
 package com.hackx.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -16,34 +13,47 @@ import java.io.Serializable;
  * | PARAM_KEY   | varchar(256)  | NO   | PRI | NULL    |       |
  * | PARAM_VALUE | varchar(4000) | YES  |     | NULL    |       |
  */
+@Data
 @Entity
+@IdClass(TableParamsEntity.TableParamsPk.class)
 @Table(name = "TABLE_PARAMS")
 public class TableParamsEntity implements Serializable {
 
     private static final long serialVersionUID = 5651900771450458070L;
 
-    @Getter
-    @Setter
+    @Id
     @Column(name = "TBL_ID")
     private Long tblId;
 
-    @Getter
-    @Setter
+    @Id
     @Column(name = "PARAM_KEY")
     private String paramKey;
 
-    @Getter
-    @Setter
+   
     @Column(name = "PARAM_VALUE")
     private String paramValue;
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("TableParamsEntity{");
-        sb.append("tblId=").append(tblId);
-        sb.append(", paramKey='").append(paramKey).append('\'');
-        sb.append(", paramValue='").append(paramValue).append('\'');
-        sb.append('}');
-        return sb.toString();
+    @Data
+    public static class TableParamsPk implements Serializable {
+
+        private static final long serialVersionUID = -5778619750562697653L;
+
+        public TableParamsPk() {
+        }
+
+        public TableParamsPk(Long tblId, String paramKey) {
+            this.tblId = tblId;
+            this.paramKey = paramKey;
+        }
+
+        @Column(name = "TBL_ID")
+        private Long tblId;
+
+
+        @Column(name = "PARAM_KEY")
+        private String paramKey;
+
+
     }
+
 }

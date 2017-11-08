@@ -1,11 +1,8 @@
 package com.hackx.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -16,34 +13,45 @@ import java.io.Serializable;
  * | PART_KEY_VAL | varchar(256) | YES  |     | NULL    |       |
  * | INTEGER_IDX  | int(11)      | NO   | PRI | NULL    |       |
  */
+@Data
 @Entity
+@IdClass(PartitionKeyValsEntity.PartitionKeyValsPk.class)
 @Table(name = "PARTITION_KEY_VALS")
 public class PartitionKeyValsEntity implements Serializable {
 
     private static final long serialVersionUID = -8696204912017312143L;
 
-    @Setter
-    @Getter
+    @Id
     @Column(name = "PART_ID")
     private Long partId;
 
-    @Setter
-    @Getter
+
     @Column(name = "PART_KEY_VAL")
     private String partKeyVal;
 
-    @Setter
-    @Getter
+    @Id
     @Column(name = "INTEGER_IDX")
     private int integerIdx;
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("PartitionKeyValsEntity{");
-        sb.append("partId=").append(partId);
-        sb.append(", partKeyVal='").append(partKeyVal).append('\'');
-        sb.append(", integerIdx=").append(integerIdx);
-        sb.append('}');
-        return sb.toString();
+    @Data
+    public static class PartitionKeyValsPk implements Serializable {
+
+        private static final long serialVersionUID = -5778619750562697653L;
+
+        public PartitionKeyValsPk() {
+        }
+
+        public PartitionKeyValsPk(Long partId, int integerIdx) {
+            this.partId = partId;
+            this.integerIdx = integerIdx;
+        }
+
+        @Column(name = "PART_ID")
+        private Long partId;
+
+        @Column(name = "INTEGER_IDX")
+        private int integerIdx;
+
     }
+
 }

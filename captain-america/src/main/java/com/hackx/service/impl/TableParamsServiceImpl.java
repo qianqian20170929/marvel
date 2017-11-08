@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by 曹磊(Hackx) on 3/11/2017.
@@ -19,7 +20,17 @@ public class TableParamsServiceImpl implements TableParamsService {
     TableParamsRepository tableParamsRepository;
 
     @Override
-    public List<TableParamsEntity> findByTblId(Long tblId) {
+    public Optional<List<TableParamsEntity>> findByTblId(Long tblId) {
         return tableParamsRepository.findByTblId(tblId);
+    }
+
+    @Override
+    public Optional<List<TableParamsEntity>> findByParamKey(String paramKey) {
+        return tableParamsRepository.findByParamKey(paramKey);
+    }
+
+    @Override
+    public Optional<TableParamsEntity> findByTblIdAndParamKey(Long tblId, String paramKey) {
+        return tableParamsRepository.findByTblIdAndParamKey(tblId, paramKey);
     }
 }

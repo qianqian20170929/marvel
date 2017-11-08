@@ -2,6 +2,7 @@ package com.hackx.service;
 
 import com.hackx.entity.ColumnsV2Entity;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -10,6 +11,10 @@ import java.util.Optional;
  */
 public interface ColumnsV2Service {
 
-    Optional<ColumnsV2Entity> findByCdId(Long cdId);
+    Optional<List<ColumnsV2Entity>> findByCdId(Long cdId);
+
+    Optional<List<ColumnsV2Entity>> findByColumnName(String columnName);
+
+    Optional<ColumnsV2Entity> findByCdIdAndColumnName(Long cdId, String columnName);
 
 }
