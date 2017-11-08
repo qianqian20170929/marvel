@@ -3,5 +3,6 @@ target/
 .idea
 *.iml
 
+captain-america/logs
 captain-america/target
 captain-america/captain-america.iml
